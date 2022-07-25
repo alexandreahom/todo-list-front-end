@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
@@ -14,6 +14,14 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [todos, setTodos] = useState([])
 
+  useEffect(() => {
+    const fetchAllTodos = async () =>{
+      const todoData = await todoService.getAll()
+      setTodos(todoData)
+    }
+    fetchAllTodos()
+  },[])
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -22,8 +30,8 @@ const App = () => {
     navigate('/')
   }
 
-  const handleAddTodo = (todo) => {
-    const newTodo = todoService.create(todo)
+  const handleAddTodo = async (todo) => {
+    const newTodo = await todoService.create(todo)
     setTodos(newTodo)
   }
 
@@ -51,7 +59,8 @@ const App = () => {
         <Route
           path="/todos"
           todos={todos}
-          element={< Todos/>}
+          // handleAddTodo={handleAddTodo}
+          element={< Todos handleAddTodo={handleAddTodo}/>}
         />
         <Route
           path="/changePassword"

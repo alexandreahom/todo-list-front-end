@@ -27,12 +27,13 @@ const LoginForm = props => {
   }
 
   return (
+    <div className='login-box'>
     <form
       autoComplete="off"
       onSubmit={handleSubmit}
       className={styles.container}
     >
-      <div className={styles.inputContainer}>
+      <div className="user-box">
         <label htmlFor="email" className={styles.label}>Email</label>
         <input
           type="text"
@@ -43,7 +44,7 @@ const LoginForm = props => {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.inputContainer}>
+      <div className="user-box">
         <label htmlFor="password" className={styles.label}>Password</label>
         <input
           type="password"
@@ -61,6 +62,7 @@ const LoginForm = props => {
         </Link>
       </div>
     </form>
+    </div>
   )
 }
 
