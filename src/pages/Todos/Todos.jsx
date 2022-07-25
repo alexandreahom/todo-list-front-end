@@ -1,36 +1,26 @@
-import { useState} from 'react'
-import  '../../styles/todos.css'
+import TodoForm from '../../components/TodoForm/TodoForm';
+import TodoList from '../../components/TodoList/TodoList';
+import './Todo.css'
+import * as todoService from '../../services/todoService'
+import { useState } from 'react';
 
-const Todos = (props) => {
-    const [formData, setFormData] = useState({})
-    const handleChange = evt => {
-		setFormData({ ...formData, [evt.target.name]: evt.target.value })
-    }
-    const handleSubmit = evt => {
-    evt.preventDefault()
-    props.handleAddTodo(formData)
+
+const Todo = (props) => {
+    const [todos, setTodos] = useState([])
+
+    const handleAddTodo = async (formData) => {
+        const newTodo = await todoService.create(formData)
+        setTodos([...todos, newTodo])
     }
     return (
-    <>
-    <div id="container">
-        <h1>To-Do List <i className="fa fa-plus"></i></h1>
-        <form autoComplete='off' onSubmit={handleSubmit}>
-            <input type="text" name="description" onChange={handleChange} placeholder="Add New Todo"/>
-            <button type='submit'>Add </button>
-        </form>
-        {props.todos?.map(todo=>
         <>
-            {todo.description}
+            <div className="todo">
+                <h1>Todo</h1>
+                <TodoForm handleAddTodo={handleAddTodo} />
+                <TodoList todos={todos}/>
+            </div>
         </>
-            )}
-        <ul>
-            {/* <li><span><i className="fa fa-trash"></i></span> Go To Maths Class</li>
-            <li><span><i className="fa fa-trash"></i></span> Buy New Clothes</li>
-            <li><span><i className="fa fa-trash"></i></span> Visit George</li> */}
-        </ul>
-    </div>
-    </>
     )
 }
 
-export default Todos
+export default Todo;

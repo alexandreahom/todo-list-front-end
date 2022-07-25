@@ -11,8 +11,8 @@ import * as todoService from './services/todoService'
 import Todos from './pages/Todos/Todos'
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser())
   const [todos, setTodos] = useState([])
+  const [user, setUser] = useState(authService.getUser())
 
   // useEffect(() => {
   //   const fetchAllTodos = async () =>{
