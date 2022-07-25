@@ -15,9 +15,14 @@ const Todos = (props) => {
     <div id="container">
         <h1>To-Do List <i className="fa fa-plus"></i></h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
-            <input type="text" onChange={handleChange} placeholder="Add New Todo"/>
+            <input type="text" name="description" onChange={handleChange} placeholder="Add New Todo"/>
             <button type='submit'>Add </button>
         </form>
+        {props.todos?.map(todo=>
+        <>
+            {todo.description}
+        </>
+            )}
         <ul>
             {/* <li><span><i className="fa fa-trash"></i></span> Go To Maths Class</li>
             <li><span><i className="fa fa-trash"></i></span> Buy New Clothes</li>

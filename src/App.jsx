@@ -14,13 +14,13 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [todos, setTodos] = useState([])
 
-  useEffect(() => {
-    const fetchAllTodos = async () =>{
-      const todoData = await todoService.getAll()
-      setTodos(todoData)
-    }
-    fetchAllTodos()
-  },[])
+  // useEffect(() => {
+  //   const fetchAllTodos = async () =>{
+  //     const todoData = await todoService.getAll()
+  //     setTodos(todoData)
+  //   }
+  //   fetchAllTodos()
+  // },[])
 
   const navigate = useNavigate()
 
