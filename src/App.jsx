@@ -11,11 +11,12 @@ import * as todoService from './services/todoService'
 import * as profileService from './services/profileService'
 import Todos from './pages/Todos/Todos'
 import Edit from './pages/EditTodos/Edit'
-
+import Profile from './pages/Profile/Profile'
 const App = () => {
   const [todos, setTodos] = useState([])
+  // const [profile,setProfile] = useState({})
   const [profiles, setProfiles] = useState([])
-console.log(todos)
+// console.log(todos)
   useEffect(() => {
       const fetchProfiles = async () => {
         const profileData = await profileService.getAllProfiles()
@@ -43,7 +44,10 @@ console.log(todos)
     const newTodo = await todoService.create(formData,id)
     setTodos([...todos, newTodo])
 }
-
+const handleDelete = async (id) => {
+  const updatedTodos = await todoService.deleteTodos(id)
+  setTodos(updatedTodos)
+}
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
@@ -66,8 +70,13 @@ console.log(todos)
           element={user ? <Profiles /> : <Navigate to="/login" />}
         />
         <Route
+          path="/profiles/:id"
+          element={< Profile user={user} />}
+        />
+        <Route
           path="/todos"
-          element={< Todos todos={todos} handleAddTodo={handleAddTodo} user={user} profiles={profiles} />}
+          
+          element={< Todos todos={todos} handleDelete={handleDelete} handleAddTodo={handleAddTodo} user={user} profiles={profiles} />}
         />
         <Route
           path="/todos/:id"

@@ -12,18 +12,18 @@ const Edit = (props) => {
     description:''
   })
 
-  useEffect(() => {
-    const fetchComment = async (commentId) => {
-      const viewTodo = await todoService.show(commentId)
-      setFormData(viewTodo)
-    }
-    fetchComment(id)
-  }, [id])
+  // useEffect(() => {
+  //   const fetchComment = async (commentId) => {
+  //     const viewTodo = await todoService.show(commentId)
+  //     setFormData(viewTodo)
+  //   }
+  //   fetchComment(id)
+  // }, [id])
   
   const handleUpdate = async (e) => {
       e.preventDefault()
-      await todoService.update(formData)
-      navigate(`/todos`)
+      await todoService.update(formData, id)
+      // navigate(`/todos`)
     }
   return (
     <>
