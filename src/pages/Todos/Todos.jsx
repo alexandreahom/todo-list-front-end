@@ -8,6 +8,7 @@ const Todo = ({profile, handleAddTodo, todos, user, handleDelete}) => {
     console.log(todos)
     return (
         <>
+
             <div className="todo">
                 <ul>
         {/* {todos?.map(todo=> 
@@ -28,6 +29,7 @@ const Todo = ({profile, handleAddTodo, todos, user, handleDelete}) => {
 
                 } */}
             </div>
+
         </>
     )
 }

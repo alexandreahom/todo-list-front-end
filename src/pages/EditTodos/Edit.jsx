@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import * as todoService from '../../services/todoService'
+import './EditTodos.css'
+
 const Edit = (props) => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -25,7 +27,7 @@ const Edit = (props) => {
     }
   return (
     <>
-      <section>
+      <section className='edit-todo'>
         <div className="c-container">
           <h1>Update Todo</h1>
           <form id="algin-form"  onSubmit={handleUpdate}>
