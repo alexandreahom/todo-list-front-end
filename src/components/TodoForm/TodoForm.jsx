@@ -4,7 +4,8 @@ const TodoForm = (props) => {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
-    name: ''
+    name: '',
+    description:''
   })
 
   useEffect(() => {
@@ -15,10 +16,10 @@ const TodoForm = (props) => {
     const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
     }
-
+    // console.log(props.user.profile)
     const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddTodo(formData)
+    props.handleAddTodo(formData,props.user.profile)
     }
 
 
@@ -27,6 +28,7 @@ const TodoForm = (props) => {
     <>
       <form className="todo-form" ref={formElement} onSubmit={handleSubmit} autoComplete='off'>
         <input type="text" placeholder="Enter Todos" name="name" onChange={handleChange} />
+        <input type="text" placeholder="Explain in 25 words" name="description" onChange={handleChange} maxLength={25}  />
         <button type="submit" disabled={!validForm}>Add</button>
       </form>
     </>

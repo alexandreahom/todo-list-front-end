@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 const TodoList = (props) => {
   return ( 
     <>
-      {/* <ul>
-        {props.todos?.map(todo=>
-        <>
-            <li>{todo.description}</li>
-        </>
+      {props.todos?.map(todo=> 
+            <>
+                <Link to={`/todos/${todo._id}`} state={{todo}} >
+                <li>{todo.name}</li>
+                <li>{todo.description}</li>
+                </Link>
+            </>
             )}
-      </ul> */}
     </>
   )
 }
