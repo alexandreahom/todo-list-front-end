@@ -8,32 +8,41 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as todoService from './services/todoService'
+import * as profileService from './services/profileService'
 import Todos from './pages/Todos/Todos'
+import Edit from './pages/EditTodos/Edit'
 
 const App = () => {
   const [todos, setTodos] = useState([])
+  const [profiles, setProfiles] = useState([])
+console.log(todos)
+  useEffect(() => {
+      const fetchProfiles = async () => {
+        const profileData = await profileService.getAllProfiles()
+        setProfiles(profileData)
+      }
+      fetchProfiles()
+    }, [])
   const [user, setUser] = useState(authService.getUser())
-
-  // useEffect(() => {
-  //   const fetchAllTodos = async () =>{
-  //     const todoData = await todoService.getAll()
-  //     setTodos(todoData)
-  //   }
-  //   fetchAllTodos()
-  // },[])
+  useEffect(() => {
+    const fetchAllTodos = async () =>{
+      const todoData = await todoService.getAll()
+      setTodos(todoData)
+    }
+    fetchAllTodos()
+  },[])
 
   const navigate = useNavigate()
-
   const handleLogout = () => {
     authService.logout()
     setUser(null)
     navigate('/')
   }
 
-  const handleAddTodo = async (todo) => {
-    const newTodo = await todoService.create(todo)
-    setTodos(newTodo)
-  }
+  const handleAddTodo = async (formData, id) => {
+    const newTodo = await todoService.create(formData,id)
+    setTodos([...todos, newTodo])
+}
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
@@ -58,9 +67,11 @@ const App = () => {
         />
         <Route
           path="/todos"
-          todos={todos}
-          // handleAddTodo={handleAddTodo}
-          element={< Todos handleAddTodo={handleAddTodo}/>}
+          element={< Todos todos={todos} handleAddTodo={handleAddTodo} user={user} profiles={profiles} />}
+        />
+        <Route
+          path="/todos/:id"
+          element={< Edit todos={todos} />}
         />
         <Route
           path="/changePassword"
