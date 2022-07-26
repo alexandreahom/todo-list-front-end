@@ -26,43 +26,47 @@ const LoginForm = props => {
     }
   }
 
+  const { email, pw } = formData
+
+  const isFormInvalid = () => {
+    return !(email && pw)
+  }
+
   return (
-    <div className='login-box'>
     <form
+      id='signinform'
       autoComplete="off"
       onSubmit={handleSubmit}
       className={styles.container}
     >
-      <div className="user-box">
-        <label htmlFor="email" className={styles.label}>Email</label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="email"
-          value={formData.email}
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="user-box">
-        <label htmlFor="password" className={styles.label}>Password</label>
-        <input
-          type="password"
-          autoComplete="off"
-          id="password"
-          value={formData.pw}
-          name="pw"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <button className={styles.button}>Log In</button>
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
-      </div>
+      <h1> Log In </h1>
+      <label htmlFor="email" className={styles.label}>Email</label>
+      <input
+        type="text"
+        autoComplete="off"
+        id="email"
+        value={formData.email}
+        name="email"
+        onChange={handleChange}
+        placeholder='Email'
+      />
+      <label htmlFor="password" className={styles.label}>Password</label>
+      <input
+        type="password"
+        autoComplete="off"
+        id="password"
+        value={formData.pw}
+        name="pw"
+        onChange={handleChange}
+        placeholder='Password'
+      />
+      <button id='signinbtn' disabled={isFormInvalid()} className={styles.button}>Log In</button>
+      <Link to="/">
+        <button id='signinbtn' className='cancel-btn'>Cancel</button>
+      </Link>
+      <hr />
+      <p>Don't have an account ? <Link to="/signup">Sign up</Link></p>
     </form>
-    </div>
   )
 }
 

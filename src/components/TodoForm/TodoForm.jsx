@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import './TodoForm.css'
 
 const TodoForm = (props) => {
   const formElement = useRef()
@@ -28,8 +29,8 @@ const TodoForm = (props) => {
     <>
       <form className="todo-form" ref={formElement} onSubmit={handleSubmit} autoComplete='off'>
         <input type="text" placeholder="Enter Todos" name="name" onChange={handleChange} />
-        <input type="text" placeholder="Explain in 25 words" name="description" onChange={handleChange} maxLength={25}  />
-        <button type="submit" disabled={!validForm}>Add</button>
+        <input type="text" placeholder="Explain in 25 words" name="description" onChange={handleChange} maxLength={25}  /> <br />
+        <button className="btn-form" type="submit" disabled={!validForm}>Add</button>
       </form>
     </>
   )

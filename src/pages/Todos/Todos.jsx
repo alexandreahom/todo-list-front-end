@@ -13,7 +13,7 @@ const Todo = ({profile, handleAddTodo, todos, user, handleDelete}) => {
                 </ul>
                 <h1>Todo</h1>
                 <TodoForm handleAddTodo={handleAddTodo} user={user} />
-                <TodoList handleDelete={handleDelete} todos={todos}/>
+                <TodoList handleDelete={handleDelete} user={user} todos={todos}/>
             </div>
 
         </>

@@ -12,6 +12,9 @@ import * as profileService from './services/profileService'
 import Todos from './pages/Todos/Todos'
 import Edit from './pages/EditTodos/Edit'
 import Profile from './pages/Profile/Profile'
+import './App.css'
+
+
 const App = () => {
   const [todos, setTodos] = useState([])
   const [profiles, setProfiles] = useState([])
