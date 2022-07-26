@@ -14,9 +14,8 @@ import Edit from './pages/EditTodos/Edit'
 import Profile from './pages/Profile/Profile'
 const App = () => {
   const [todos, setTodos] = useState([])
-  // const [profile,setProfile] = useState({})
   const [profiles, setProfiles] = useState([])
-// console.log(todos)
+
   useEffect(() => {
       const fetchProfiles = async () => {
         const profileData = await profileService.getAllProfiles()
@@ -24,7 +23,9 @@ const App = () => {
       }
       fetchProfiles()
     }, [])
+
   const [user, setUser] = useState(authService.getUser())
+
   useEffect(() => {
     const fetchAllTodos = async () =>{
       const todoData = await todoService.getAll()
@@ -34,6 +35,7 @@ const App = () => {
   },[])
 
   const navigate = useNavigate()
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -41,13 +43,15 @@ const App = () => {
   }
 
   const handleAddTodo = async (formData, id) => {
-    const newTodo = await todoService.create(formData,id)
+    const newTodo = await todoService.create(formData, id)
     setTodos([...todos, newTodo])
 }
+
 const handleDelete = async (id) => {
-  const updatedTodos = await todoService.deleteTodos(id)
-  setTodos(updatedTodos)
+  const deleteTodos = await todoService.deleteTodos(id)
+  setTodos(todos.filter(todo => todo._id !== deleteTodos._id))
 }
+
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
