@@ -4,8 +4,8 @@ import './Todo.css'
 import { Link } from 'react-router-dom';
 
 
-const Todo = ({profile, handleAddTodo, todos, user}) => {
-    // console.log(profile)
+const Todo = ({profile, handleAddTodo, todos, user, handleDelete}) => {
+    console.log(todos)
     return (
         <>
             <div className="todo">
@@ -21,7 +21,12 @@ const Todo = ({profile, handleAddTodo, todos, user}) => {
                 </ul>
                 <h1>Todo</h1>
                 <TodoForm handleAddTodo={handleAddTodo} user={user} />
-                <TodoList todos={todos}/>
+                <TodoList handleDelete={handleDelete} todos={todos}/>
+                {/* {user?.profile === todos.owner?._id &&
+                <>
+                </>
+
+                } */}
             </div>
         </>
     )

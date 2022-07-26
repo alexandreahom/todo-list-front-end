@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-const TodoList = (props) => {
+const TodoList = ({todos,handleDelete}) => {
   return ( 
     <>
-      {props.todos?.map(todo=> 
-            <>
-                <Link to={`/todos/${todo._id}`} state={{todo}} >
-                <li>{todo.name}</li>
-                <li>{todo.description}</li>
-                </Link>
-            </>
-            )}
+      {todos.map(todo=> 
+      <>
+        <li key={todo._id}>{todo.name}, {todo.description}</li>
+        <button onClick={() => handleDelete(todo._id)} type="button" className="btn btn-danger">Remove</button>
+      </>
+      )}
     </>
   )
 }

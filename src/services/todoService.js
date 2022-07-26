@@ -22,9 +22,9 @@ export async function create(formData, id) {
   console.log(data,"data")
   return data
 }
-export async function update(formData) {
+export async function update(formData, id) {
   console.log(formData,"***")
-  const res = await fetch(`${BASE_URL}`, {
+  const res = await fetch(`${BASE_URL}/${id}/update`, {
     method: 'PUT', 
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`,
@@ -36,15 +36,23 @@ export async function update(formData) {
   console.log(data,"data")
   return data
 }
-export async function show(id) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: 'GET', 
+export async function deleteTodos(id) {
+  const res = await fetch(`${BASE_URL}/deleted/${id}`, {
+    method: 'DELETE',
     headers: {
-      'Authorization': `Bearer ${tokenService.getToken()}`,
-      'Content-Type': 'application/json'
-    }, 
-  })
-  const data =  await res.json()
-  console.log(data,"data")
-  return data
-}
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    }})
+  return res.json()
+} 
+// export async function show(id) {
+//   const res = await fetch(`${BASE_URL}/${id}`, {
+//     method: 'GET', 
+//     headers: {
+//       'Authorization': `Bearer ${tokenService.getToken()}`,
+//       'Content-Type': 'application/json'
+//     }, 
+//   })
+//   const data =  await res.json()
+//   console.log(data,"data")
+//   return data
+// }
