@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
-const TodoList = ({todos,handleDelete}) => {
+import './TodoList.css'
+
+const TodoList = ({todos, handleDelete, user}) => {
   return ( 
     <>
 
       {todos.map(todo=> 
       <>
-        <li key={todo._id}>{todo.name}, {todo.description}</li>
-        <button onClick={() => handleDelete(todo._id)} type="button" className="btn btn-danger">Remove</button>
+        
+        {user.profile === todo.owner ?
+        <>
+        <div key={todo._id} className='todolist'>{todo.name} - {todo.description} <button onClick={() => handleDelete(todo._id)} type="button" className="btn-list">Remove</button></div>
+        </>
+        :""
+        }
       </>
       )}
 
