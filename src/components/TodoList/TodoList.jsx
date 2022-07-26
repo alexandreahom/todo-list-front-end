@@ -5,8 +5,7 @@ const TodoList = (props) => {
       {props.todos?.map(todo=> 
             <>
                 <Link to={`/todos/${todo._id}`} state={{todo}} >
-                <li>{todo.name}</li>
-                <li>{todo.description}</li>
+                  <li>{todo.name} - {todo.description}</li>
                 </Link>
             </>
             )}
