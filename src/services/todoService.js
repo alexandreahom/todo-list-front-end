@@ -8,8 +8,6 @@ export async function getAll(){
 }
 
 export async function create(formData, id) {
-  console.log(formData,"***")
-  console.log(id,"***")
   const res = await fetch(`${BASE_URL}/${id}`, {
     method: 'POST', 
     headers: {
@@ -19,11 +17,10 @@ export async function create(formData, id) {
     body: JSON.stringify(formData)
   })
   const data =  await res.json()
-  console.log(data,"data")
   return data
 }
+
 export async function update(formData, id) {
-  console.log(formData,"***")
   const res = await fetch(`${BASE_URL}/${id}/update`, {
     method: 'PUT', 
     headers: {
@@ -33,9 +30,9 @@ export async function update(formData, id) {
     body: JSON.stringify(formData)
   })
   const data =  await res.json()
-  console.log(data,"data")
   return data
 }
+
 export async function deleteTodos(id) {
   const res = await fetch(`${BASE_URL}/deleted/${id}`, {
     method: 'DELETE',
@@ -44,6 +41,8 @@ export async function deleteTodos(id) {
     }})
   return res.json()
 } 
+
+
 // export async function show(id) {
 //   const res = await fetch(`${BASE_URL}/${id}`, {
 //     method: 'GET', 
@@ -53,6 +52,5 @@ export async function deleteTodos(id) {
 //     }, 
 //   })
 //   const data =  await res.json()
-//   console.log(data,"data")
 //   return data
 // }
