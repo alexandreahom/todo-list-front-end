@@ -73,14 +73,6 @@ const handleDelete = async (id) => {
           element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
         />
         <Route
-          path="/profiles"
-          element={user ? <Profiles /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profiles/:id"
-          element={< Profile user={user} />}
-        />
-        <Route
           path="/todos"
           
           element={< Todos todos={todos} handleDelete={handleDelete} handleAddTodo={handleAddTodo} user={user} profiles={profiles} />}
